@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
+	<http>
+		<intercept-url  pattern="/main/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<form-login 
+		   login-page="/customLogin.jsp"
+		   login-processing-url="/appLogin"
+		   username-parameter="app_username"
+		   password-parameter="app_password"
+		   default-target-url="/main/index"/>
+		<logout 
+		   logout-url="/appLogout" 
+		   logout-success-url="/main.jsp"/>
+		<access-denied-handler error-page="/user/error"/>
+	</http>
+	<beans:bean name="bcryptEncoder"
+	      class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
+	<beans:bean name="myAppUserDetailsService"
+	      class="com.concretepage.service.MyAppUserDetailsService"/>
+	<beans:bean name="userService"
+	      class="com.concretepage.service.UserService"/>	      
+	<authentication-manager>
+		<authentication-provider user-service-ref="myAppUserDetailsService">
+		    <password-encoder ref="bcryptEncoder"/>
+		</authentication-provider>
+	</authentication-manager>
+	<global-method-security secured-annotations="enabled" />
+</beans:beans> 

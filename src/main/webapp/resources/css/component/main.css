@@ -1,0 +1,12 @@
+a.logOut {
+    float : right;
+}
+h2.welcome {
+    display: inline-block;
+}
+button.test {
+    display: table-caption;
+}
+div.completedArea {
+    display: inline-block;
+}
