@@ -1,5 +1,6 @@
 package com.concretepage.controller;
 
+import com.concretepage.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -7,25 +8,30 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.concretepage.service.IUserService;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private  IUserService service;
-	@RequestMapping(value="/home")
-	public String home(ModelMap model, Authentication authentication) {
-		authentication.getPrincipal();
-		model.addAttribute("main", "it's main");
- 		return "main";
- 	}
-	@RequestMapping(value="/register")
-	public String register(ModelMap model, Authentication authentication) {
 
-		return "registration";
+	@RequestMapping(value="/login")
+	public String home(ModelMap model, Authentication authentication) {
+ 		return "customLogin";
+ 	}
+
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	public String register(ModelMap model,
+			               @RequestParam("registerLogin") String login,
+						   @RequestParam("registerPassword") String password) {
+		service.addUser(new UserInfo(login, password));
+		model.addAttribute("successMessage", "Registration successfully, please sign in.");
+		return "customLogin";
 	}
+
 	@RequestMapping(value="/error")
 	public String error() {
- 		return "page/access-denied";
+ 		return "/view/access-denied";
  	}
 }	

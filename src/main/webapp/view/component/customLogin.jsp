@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <form class="form-horizontal registerDiv" action="<%=request.getContextPath()%>/user/register" method="POST" disabled hidden>
+    <form class="form-horizontal registerDiv" action="<%=request.getContextPath()%>/register" method="POST" disabled hidden>
         <div class="control-group">
             <label class="control-label" for="inputRegisterLogin">Login:</label>
             <div class="controls">

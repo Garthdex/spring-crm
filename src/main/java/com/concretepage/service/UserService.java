@@ -10,4 +10,10 @@ public class UserService implements IUserService {
 	public UserInfo getDataByUserName(String userName) {
 		return userDAO.getActiveUser(userName);
 	}
+
+	@Override
+	public void addUser(UserInfo user) {
+		userDAO.addUser(user);
+	}
+
 }

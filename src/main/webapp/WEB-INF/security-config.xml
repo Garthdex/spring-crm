@@ -7,8 +7,9 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	<http>
-		<intercept-url  pattern="/main/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<form-login 
+		<csrf disabled="true"/>
+		<!--<intercept-url  pattern="/main/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />-->
+		<form-login
 		   login-page="/customLogin.jsp"
 		   login-processing-url="/appLogin"
 		   username-parameter="app_username"
@@ -16,8 +17,8 @@
 		   default-target-url="/main/index"/>
 		<logout 
 		   logout-url="/appLogout" 
-		   logout-success-url="/main.jsp"/>
-		<access-denied-handler error-page="/user/error"/>
+		   logout-success-url="/main/index"/>
+		<access-denied-handler error-page="/error"/>
 	</http>
 	<beans:bean name="bcryptEncoder"
 	      class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>	
