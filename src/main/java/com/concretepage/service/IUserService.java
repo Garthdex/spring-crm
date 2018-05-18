@@ -9,5 +9,7 @@ public interface IUserService {
 	UserInfo getDataByUserName(String userName);
 
 	void addUser(UserInfo user);
+
+	void updateUser(Integer id, String name, String address, String phoneNumber);
 }
  

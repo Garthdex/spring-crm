@@ -2,17 +2,16 @@ package com.concretepage.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Entity
 @Table(name="users")
 public class UserInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="user_id")
-	private String userId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id", unique=true, nullable=false)
+	private Integer userId;
 	@Column(name="username")
 	private String userName;
 	@Column(name="password")
@@ -34,10 +33,10 @@ public class UserInfo implements Serializable {
 		this.userName = userName;
 		this.password = password;
 	}
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {

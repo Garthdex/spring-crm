@@ -8,12 +8,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/main")
 public class MainController {
     @Autowired
     private IUserService service;
 
-    @RequestMapping({"/", "/index"})
+    @RequestMapping({"/", "/main"})
     public String getMainPage(ModelMap model, Authentication authentication) {
         if(authentication != null) {
             authentication.getPrincipal();

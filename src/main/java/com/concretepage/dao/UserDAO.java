@@ -30,4 +30,16 @@ public class UserDAO {
 		user.setEnabled((short) 1);
 		hibernateTemplate.save(user);
 	}
+
+	public void updateUser(Integer id, String name, String address, String phoneNumber) {
+		UserInfo user =  new UserInfo();
+		List<?> list = hibernateTemplate.find("FROM UserInfo WHERE id=?" , id);
+		if(!list.isEmpty()) {
+			user = (UserInfo)list.get(0);
+		}
+		user.setFullName(name);
+		user.setAddress(address);
+		user.setPhoneNumber(phoneNumber);
+		hibernateTemplate.saveOrUpdate(user);
+	}
 }

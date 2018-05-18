@@ -17,7 +17,7 @@ public class UserController {
 	private  IUserService service;
 
 	@RequestMapping(value="/login")
-	public String home(ModelMap model, Authentication authentication) {
+	public String home(ModelMap model) {
  		return "customLogin";
  	}
 
@@ -25,26 +25,33 @@ public class UserController {
 	public String register(ModelMap model,
 			               @RequestParam("registerLogin") String login,
 						   @RequestParam("registerPassword") String password) {
-		//TODO validate if user already added
-		service.addUser(new UserInfo(login, password));
-		model.addAttribute("successMessage", "Registration successfully, please sign in");
+		if (service.getDataByUserName(login) != null) {
+			model.addAttribute("errorMessageRegistration", "User with such login already exist, pls try again");
+		} else {
+			service.addUser(new UserInfo(login, password));
+			model.addAttribute("successMessage", "Registration successfully, please sign in");
+		}
 		return "customLogin";
+
 	}
 
 	@RequestMapping(value="/profile")
-	public String showProfile() {
-
+	public String showProfile(ModelMap model, Authentication authentication) {
+		authentication.getPrincipal();
+		model.addAttribute("user", service.getDataByUserName(authentication.getName()));
 		return "/view/page/profile";
 	}
 
 	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
-	public String updateUser(ModelMap model,
+	public String updateUser(ModelMap model, Authentication authentication,
+							 @RequestParam("id") Integer id,
 							 @RequestParam("name") String name,
 							 @RequestParam("address") String address,
 							 @RequestParam("phoneNumber") String phoneNumber) {
-		//TODO update user from DAO
+		service.updateUser(id, name, address, phoneNumber);
 
-		model.addAttribute("success", "You saved the account information");
+		model.addAttribute("successMessage", "You saved the account information");
+		model.addAttribute("user", service.getDataByUserName(authentication.getName()));
 		return "/view/page/profile";
 	}
 

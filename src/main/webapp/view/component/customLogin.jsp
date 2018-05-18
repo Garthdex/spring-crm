@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <div class="switch">
-                    Haven't account yet? Please, <a class="registerLink" href="#"> register </a>
+                    Haven't account yet? Please, <a class="registerLink" href="#">register</a>
                     <button type="submit" class="btn signIn">Sign in</button>
                     <input class = "form-control" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </div>

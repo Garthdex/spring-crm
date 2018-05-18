@@ -16,4 +16,9 @@ public class UserService implements IUserService {
 		userDAO.addUser(user);
 	}
 
+	@Override
+	public void updateUser(Integer id, String name, String address, String phoneNumber) {
+		userDAO.updateUser(id, name, address, phoneNumber);
+	}
+
 }
