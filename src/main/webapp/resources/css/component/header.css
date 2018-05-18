@@ -6,13 +6,3 @@
     line-height: 4em;
     position: absolute;
 }
-.rowHeader {
-    background: #fde9e9;
-    text-align: center;
-}
-.logo {
-    float: left;
-}
-.logo .img-circle {
-    width: 100px;
-}

@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	<http>
 		<csrf disabled="true"/>
-		<!--<intercept-url  pattern="/main/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />-->
+		<intercept-url  pattern="/profile" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<form-login
 		   login-page="/customLogin.jsp"
 		   login-processing-url="/appLogin"

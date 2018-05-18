@@ -25,9 +25,27 @@ public class UserController {
 	public String register(ModelMap model,
 			               @RequestParam("registerLogin") String login,
 						   @RequestParam("registerPassword") String password) {
+		//TODO validate if user already added
 		service.addUser(new UserInfo(login, password));
-		model.addAttribute("successMessage", "Registration successfully, please sign in.");
+		model.addAttribute("successMessage", "Registration successfully, please sign in");
 		return "customLogin";
+	}
+
+	@RequestMapping(value="/profile")
+	public String showProfile() {
+
+		return "/view/page/profile";
+	}
+
+	@RequestMapping(value="/updateUser", method = RequestMethod.POST)
+	public String updateUser(ModelMap model,
+							 @RequestParam("name") String name,
+							 @RequestParam("address") String address,
+							 @RequestParam("phoneNumber") String phoneNumber) {
+		//TODO update user from DAO
+
+		model.addAttribute("success", "You saved the account information");
+		return "/view/page/profile";
 	}
 
 	@RequestMapping(value="/error")

@@ -26,9 +26,7 @@ public class UserDAO {
 	public void addUser(UserInfo user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setFullName("sd");
 		user.setRole("ROLE_USER");
-		user.setCountry("USSR");
 		user.setEnabled((short) 1);
 		hibernateTemplate.save(user);
 	}

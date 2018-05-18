@@ -2,20 +2,16 @@
 <head>
 
     <title>Login</title>
-    <header class="container">
-        <jsp:include page="view/component/header.jsp"/>
-    </header>
+    <jsp:include page="view/component/links.jsp"/>
 
 </head>
 <body>
+<jsp:include page="view/component/header.jsp"/>
 
-<div class="container">
-    <jsp:include page="view/component/customLogin.jsp"/>
-</div>
+<jsp:include page="view/component/customLogin.jsp"/>
 
-<footer class="container">
-    <jsp:include page="view/component/footer.jsp"/>
-</footer>
+<jsp:include page="view/component/footer.jsp"/>
+
 
 </body>
 </html>
