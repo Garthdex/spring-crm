@@ -1,12 +1,11 @@
 <html>
     <head>
-        <title>Spring 4 Security Example</title>
+        <title>Error</title>
     </head>
     <body>
-      <h3>You are not authorized to access user profile.</h3>
+      <h3>You are not authorized to access this.</h3>
       <form action="<%=request.getContextPath()%>/appLogout" method="POST">
         <input type="submit" value="Logout"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
       </form> 
     </body>
 </html> 

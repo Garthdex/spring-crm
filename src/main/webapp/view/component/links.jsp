@@ -8,3 +8,4 @@
 <link href="<c:url value="/resources/css/component/main.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/component/profile.css"/>" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/resources/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/component/main.js" type="text/javascript"></script>

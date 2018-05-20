@@ -32,7 +32,13 @@
 	<beans:bean name="myAppUserDetailsService"
 	      class="com.concretepage.service.MyAppUserDetailsService"/>
 	<beans:bean name="userService"
-	      class="com.concretepage.service.UserService"/>	      
+	      class="com.concretepage.service.UserService"/>
+	<beans:bean name="helpService"
+				class="com.concretepage.service.HelpService"/>
+	<beans:bean name="requestService"
+				class="com.concretepage.service.RequestService"/>
+	<beans:bean name="serviceDAOService"
+				class="com.concretepage.service.ServiceDAOService"/>
 	<authentication-manager>
 		<authentication-provider user-service-ref="myAppUserDetailsService">
 		    <password-encoder ref="bcryptEncoder"/>

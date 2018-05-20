@@ -1,8 +1,8 @@
 package com.concretepage.service;
 
-import org.springframework.security.access.annotation.Secured;
-
 import com.concretepage.entity.UserInfo;
+
+import java.util.List;
 
 public interface IUserService {
 //	@Secured ({"ROLE_ADMIN"})
@@ -11,5 +11,9 @@ public interface IUserService {
 	void addUser(UserInfo user);
 
 	void updateUser(Integer id, String name, String address, String phoneNumber);
+
+	List<UserInfo> getAllCustomers();
+
+	List<UserInfo> getCustomersByLogin(String login);
 }
  

@@ -1,4 +1,5 @@
 package com.concretepage.dao;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,26 @@ public class UserDAO {
 		user.setAddress(address);
 		user.setPhoneNumber(phoneNumber);
 		hibernateTemplate.saveOrUpdate(user);
+	}
+
+	public String getUserLoginByUserId(Integer userId) {
+		UserInfo user =  new UserInfo();
+		List<?> list = hibernateTemplate.find("FROM UserInfo WHERE id=?" , userId);
+		if(!list.isEmpty()) {
+			user = (UserInfo)list.get(0);
+		}
+		return user.getUserName();
+	}
+
+	public List<UserInfo> getAllCustomers() {
+		List<?> list = hibernateTemplate.find("FROM UserInfo WHERE role = 'ROLE_USER'");
+		return (List<UserInfo>)list;
+	}
+
+	public List<UserInfo> getCustomersByLogin(String login) {
+		List<?> list = hibernateTemplate.findByNamedParam("FROM UserInfo " +
+														"WHERE role = 'ROLE_USER'" +
+														"AND userName LIKE :login", "login", '%'+login+'%');
+		return (List<UserInfo>)list;
 	}
 }

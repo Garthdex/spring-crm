@@ -9,21 +9,32 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
-public class MainController {
+public class RequestController {
     private static final String ROLE_USER  = "ROLE_USER";
     private static final String ROLE_ADMIN  = "ROLE_ADMIN";
 
     @Autowired
-    private IUserService userService;
-    @Autowired
     private RequestService requestService;
+    @Autowired
+    private IUserService userService;
 
-    @RequestMapping({"/", "/main"})
-    public String getMainPage(ModelMap model, Authentication authentication) {
+    @RequestMapping(value = "/changeStatus", method = RequestMethod.POST)
+    @ResponseBody
+    public void changeRequestStatus(@RequestParam("requestStatus") String requestStatus, @RequestParam("requestId") Integer requestId) {
+        requestService.updateStatusRequest(requestId, requestStatus);
+    }
+
+    @RequestMapping(value = "/requests")
+    @ResponseBody
+    public ModelAndView showRequestsAjax(ModelMap model, Authentication authentication) {
         List<RequestDTO> requests;
         if (authentication != null) {
             UserInfo user = userService.getDataByUserName(authentication.getName());
@@ -31,12 +42,13 @@ public class MainController {
                 Integer userId = user.getUserId();
                 requests = requestService.getRequestsDTOForUser(userId);
                 model.addAttribute("requests", requests);
+                return new ModelAndView( "/view/component/userRequests" );
             } else if (user.getRole().equals(ROLE_ADMIN)) {
                 requests = requestService.getRequestsDTOForAdmin();
                 model.addAttribute("requests", requests);
+                return new ModelAndView( "/view/component/adminRequests" );
             }
         }
-
-        return "/view/page/main";
+        return new ModelAndView( "/view/component/access-denied" );
     }
 }

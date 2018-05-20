@@ -104,3 +104,21 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.help-form {
+    max-width: 330px;
+}
+.help-form .alert-success {
+    display: none;
+}
+
+.status-form {
+    min-width: 200px;
+}
+.status-form .btn {
+    display: none;
+}
+
+#request-success {
+    display: none;
+}

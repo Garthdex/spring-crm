@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.concretepage.dao.UserDAO;
 import com.concretepage.entity.UserInfo;
+
+import java.util.List;
+
 public class UserService implements IUserService {
 	@Autowired
 	private UserDAO userDAO;
@@ -19,6 +22,16 @@ public class UserService implements IUserService {
 	@Override
 	public void updateUser(Integer id, String name, String address, String phoneNumber) {
 		userDAO.updateUser(id, name, address, phoneNumber);
+	}
+
+	@Override
+	public List<UserInfo> getAllCustomers() {
+		return userDAO.getAllCustomers();
+	}
+
+	@Override
+	public List<UserInfo> getCustomersByLogin(String login) {
+		return userDAO.getCustomersByLogin(login);
 	}
 
 }
