@@ -73,6 +73,6 @@ public class UserController {
 
 	@RequestMapping(value="/error")
 	public String error() {
- 		return "/view/component/access-denied";
+ 		return "/view/page/access-denied";
  	}
 }	

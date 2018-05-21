@@ -18,13 +18,17 @@ public class Service implements Serializable {
     private String type;
     @Column(name="price")
     private double price;
+    @Column(name = "description")
+    private String description;
 
     public Service() {
     }
-    public Service(String name, String type, double price) {
+    public Service(Integer serviceId, String name, String type, double price, String description) {
         this.name = name;
         this.type = type;
         this.price = price;
+        this.description = description;
+        this.serviceId = serviceId;
     }
     public Integer getServiceId() {
         return serviceId;
@@ -49,5 +53,11 @@ public class Service implements Serializable {
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

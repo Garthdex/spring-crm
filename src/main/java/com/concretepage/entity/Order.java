@@ -17,13 +17,17 @@ public class Order {
     private Integer serviceId;
     @Column(name="manager_id")
     private Integer managerId;
+    @Column(name="date")
+    private String date;
+
 
     public Order() {
     }
-    public Order(Integer customerId, Integer serviceId, Integer managerId) {
+    public Order(Integer customerId, Integer serviceId, Integer managerId, String date) {
         this.customerId = customerId;
         this.serviceId = serviceId;
         this.managerId = managerId;
+        this.date = date;
     }
 
     public static long getSerialVersionUID() {
@@ -52,5 +56,11 @@ public class Order {
     }
     public void setManagerId(Integer managerId) {
         this.managerId = managerId;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
     }
 }

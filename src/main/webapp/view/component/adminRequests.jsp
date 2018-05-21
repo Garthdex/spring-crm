@@ -8,7 +8,7 @@
             <th>User</th>
             <th>Service</th>
             <th>Type</th>
-            <th>Price</th>
+            <th>Price/Month</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -17,13 +17,14 @@
             <td>${request.userLogin}</td>
             <td>${request.serviceName}</td>
             <td>${request.serviceType}</td>
-            <td>${request.servicePrice}</td>
+            <td>${request.servicePrice}$</td>
             <td>
                 <form class="status-form form-inline" action="<%=request.getContextPath()%>/changeStatus" method="post">
                     <select data-status="${request.requestStatus}" name="requestStatus" class="form-control select-request">
                         <option value="pending" <c:if test="${request.requestStatus == 'pending'}">selected="selected"</c:if>>pending</option>
                         <option value="approved" <c:if test="${request.requestStatus == 'approved'}">selected="selected"</c:if>>approved</option>
                         <option value="rejected" <c:if test="${request.requestStatus == 'rejected'}">selected="selected"</c:if>>rejected</option>
+                        <option value="done" <c:if test="${request.requestStatus == 'done'}">selected="selected"</c:if>>done</option>
                     </select>
                     <input name="requestId" type="hidden" value="${request.requestId}"/>
                     <button type="submit" class="btn btn-primary btn-sm">save status</button>

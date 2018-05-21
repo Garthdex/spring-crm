@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    var templateSelector = '.get-template';
+    $(templateSelector).click(function (e) {
+        e.preventDefault();
+        var href = $(this).attr('href');
+        render(href, this);
+    });
     setListeners();
 
     function setListeners() {
@@ -24,18 +30,42 @@ $(document).ready(function(){
             postChangeStatus(href, $(this));
         });
 
-        var templateSelector = '.get-template';
-        $(templateSelector).click(function (e) {
-            e.preventDefault();
-            var href = $(this).attr('href');
-            render(href, this);
-        });
-
         $(".search-customers").submit(function (e) {
             e.preventDefault();
             var href = $(this).attr("action");
             postSearchCustomers(href, $(this));
+        });
+
+        $(".order-form").submit(function (e) {
+            e.preventDefault();
+            var href = $(this).attr("action");
+            postAddOrder(href, $(this));
+        });
+
+        $(".service-form").submit(function (e) {
+            e.preventDefault();
+            var href = $(this).attr("action");
+            postBuyService(href, $(this));
+        });
+
+        $(".buy-form").submit(function (e) {
+            e.preventDefault();
+            var href = $(this).attr("action");
+            postAddRequest(href, $(this));
+        });
+
+        $(".get-order-form").click(function (e) {
+            e.preventDefault();
+            var href = $(this).attr('href');
+            getOrderForm(href);
         })
+    }
+
+    function getOrderForm(href) {
+        $.get(href, function(data) {
+            $(".main").html(data);
+            setListeners();
+        });
     }
 
     function postHelpForm(href, form) {
@@ -49,13 +79,34 @@ $(document).ready(function(){
         $.post(href, form.serialize(), function () {
             $('#request-success').html("Successfully changed!");
             $('#request-success').show();
-        })
+        });
     }
 
     function postSearchCustomers(href, form) {
         $.post(href, form.serialize(), function (template) {
             $(".table-responsive").html(template);
-        })
+        });
+    }
+
+    function postAddOrder(href, form) {
+        $.post(href, form.serialize(), function () {
+            $('#order-success').html("Order successfully added!");
+            $('#order-success').show();
+        });
+    }
+
+    function postBuyService(href, form) {
+        $.post(href, form.serialize(), function (data) {
+            $(".main").html(data);
+            setListeners();
+        });
+    }
+
+    function postAddRequest(href, form) {
+        $.post(href, form.serialize(), function (data) {
+            $(".main").html(data);
+            setListeners();
+        });
     }
 
     function render(href, link) {

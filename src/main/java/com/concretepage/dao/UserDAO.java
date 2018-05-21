@@ -44,13 +44,13 @@ public class UserDAO {
 		hibernateTemplate.saveOrUpdate(user);
 	}
 
-	public String getUserLoginByUserId(Integer userId) {
+	public Integer getUserIdByName(String name) {
 		UserInfo user =  new UserInfo();
-		List<?> list = hibernateTemplate.find("FROM UserInfo WHERE id=?" , userId);
+		List<?> list = hibernateTemplate.find("FROM UserInfo WHERE fullName=?" , name);
 		if(!list.isEmpty()) {
 			user = (UserInfo)list.get(0);
 		}
-		return user.getUserName();
+		return user.getUserId();
 	}
 
 	public List<UserInfo> getAllCustomers() {

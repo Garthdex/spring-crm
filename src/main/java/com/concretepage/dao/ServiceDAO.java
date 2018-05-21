@@ -16,4 +16,13 @@ public class ServiceDAO {
         List<?> list = hibernateTemplate.find("FROM Service WHERE type=?" , type);
         return (List<Service>) list;
     }
+
+    public Integer getServiceIdByName(String name) {
+        Service service = new Service();
+        List<?> list = hibernateTemplate.find("FROM Service WHERE name=?" , name);
+        if(!list.isEmpty()) {
+            service = (Service)list.get(0);
+        }
+        return service.getServiceId();
+    }
 }

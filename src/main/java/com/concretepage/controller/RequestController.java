@@ -49,6 +49,6 @@ public class RequestController {
                 return new ModelAndView( "/view/component/adminRequests" );
             }
         }
-        return new ModelAndView( "/view/component/access-denied" );
+        return new ModelAndView("/view/page/access-denied");
     }
 }

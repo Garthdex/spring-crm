@@ -1,10 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<c:if test="${!empty user}">--%>
-    <%--<table>--%>
-        <%--<tr><td>Name</td><td><c:out value="${user.fullName}"/></td></tr>--%>
-        <%--<tr><td>Role</td><td><c:out value="${user.role}"/></td></tr>--%>
-    <%--</table>--%>
-<%--</c:if>--%>
 <div class="container main-container">
     <c:if test="${!empty successMessage}"><div class="alert alert-success" role="alert">${successMessage}</div></c:if>
         <form class="form-horizontal" action="<%=request.getContextPath()%>/updateUser" method="POST">

@@ -38,5 +38,6 @@
 	<bean class="com.concretepage.dao.HelpDAO" />
 	<bean class="com.concretepage.dao.RequestDAO" />
 	<bean class="com.concretepage.dao.ServiceDAO" />
+	<bean class="com.concretepage.dao.OrderDAO" />
 	<tx:annotation-driven transaction-manager="transactionManager" /> 		
 </beans> 

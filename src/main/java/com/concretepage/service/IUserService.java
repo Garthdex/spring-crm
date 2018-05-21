@@ -15,5 +15,7 @@ public interface IUserService {
 	List<UserInfo> getAllCustomers();
 
 	List<UserInfo> getCustomersByLogin(String login);
+
+	public Integer getUserIdByName(String name);
 }
  

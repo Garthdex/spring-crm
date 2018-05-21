@@ -34,4 +34,9 @@ public class UserService implements IUserService {
 		return userDAO.getCustomersByLogin(login);
 	}
 
+	@Override
+	public Integer getUserIdByName(String name) {
+		return userDAO.getUserIdByName(name);
+	}
+
 }

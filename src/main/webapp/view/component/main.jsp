@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<script src="${pageContext.request.contextPath}/resources/js/component/main.js" type="text/javascript"></script>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -15,7 +13,7 @@
             <ul class="nav nav-sidebar ul">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><li class="active"><a class="get-template" href="<%=request.getContextPath()%>/requests">Requests</a></li></sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a class="get-template" href="<%=request.getContextPath()%>/customers">Customers</a></li></sec:authorize>
-                <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a class="get-template" href="<%=request.getContextPath()%>/order">Orders</a></li></sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a class="get-template" href="<%=request.getContextPath()%>/orders">Orders</a></li></sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')"><li><a class="get-template" href="<%=request.getContextPath()%>/profile">Profile</a></li></sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ANONYMOUS')"><li><a class="get-template" href="<%=request.getContextPath()%>/help">Help</a></li></sec:authorize>
             </ul>

@@ -11,11 +11,12 @@
 		<intercept-url  pattern="/profile" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url  pattern="/requests" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url  pattern="/customers" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url  pattern="/order" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url  pattern="/orders" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url  pattern="/help" access="hasAnyRole('ROLE_USER', 'ROLE_ANONYMOUS')" />
 		<intercept-url  pattern="/internet" access="hasAnyRole('ROLE_USER', 'ROLE_ANONYMOUS')" />
 		<intercept-url  pattern="/tv" access="hasAnyRole('ROLE_USER', 'ROLE_ANONYMOUS')" />
 		<intercept-url  pattern="/phone" access="hasAnyRole('ROLE_USER', 'ROLE_ANONYMOUS')" />
+		<intercept-url  pattern="/buyService" access="hasRole('ROLE_USER')" />
 		<form-login
 		   login-page="/customLogin.jsp"
 		   login-processing-url="/appLogin"
@@ -39,6 +40,8 @@
 				class="com.concretepage.service.RequestService"/>
 	<beans:bean name="serviceDAOService"
 				class="com.concretepage.service.ServiceDAOService"/>
+	<beans:bean name="orderService"
+				class="com.concretepage.service.OrderService"/>
 	<authentication-manager>
 		<authentication-provider user-service-ref="myAppUserDetailsService">
 		    <password-encoder ref="bcryptEncoder"/>

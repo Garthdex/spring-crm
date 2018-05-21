@@ -12,4 +12,7 @@ public class ServiceDAOService {
     public List<Service> getServicesByType(String type) {
         return serviceDAO.getServicesByType(type);
     }
+    public Integer getServiceIdByName(String name) {
+        return serviceDAO.getServiceIdByName(name);
+    }
 }

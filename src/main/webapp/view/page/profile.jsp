@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <title>Main</title>
+    <title>Profile</title>
     <jsp:include page="../component/links.jsp"/>
 
 </head>

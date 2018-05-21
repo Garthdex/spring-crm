@@ -122,3 +122,7 @@ body {
 #request-success {
     display: none;
 }
+
+#order-success {
+    display: none;
+}

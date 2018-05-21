@@ -6,7 +6,7 @@
         <tr>
             <th>Service</th>
             <th>Type</th>
-            <th>Price</th>
+            <th>Price/Month</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -14,7 +14,7 @@
             <tr>
                 <td>${request.serviceName}</td>
                 <td>${request.serviceType}</td>
-                <td>${request.servicePrice}</td>
+                <td>${request.servicePrice}$</td>
                 <td>${request.requestStatus}</td>
             </tr>
         </c:forEach>
